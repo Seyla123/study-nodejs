@@ -5,7 +5,7 @@ const tourSchema = new mongoose.Schema({
         type: String,
         required: [true, 'A tour must have a name'],
         unique: true,
-        trim: true
+        trim: true,
     },
     duration:{
         type: Number,
@@ -52,7 +52,8 @@ const tourSchema = new mongoose.Schema({
     images: [String],
     createdAt: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
+        select : false
     },
     startDates: [Date],
     secretTour: {

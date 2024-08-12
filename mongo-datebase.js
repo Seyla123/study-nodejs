@@ -25,17 +25,12 @@ async function run() {
 // run().catch(console.dir);
 
 async function main() {
-
-    try {
-        await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});
         console.log('Connected to MongoDB with Mongoose');
         // define schemas and models
-    } catch (e) {
-        console.error(e);
-    }
 }
 
-main().catch(console.error);
+main();
 
 
 

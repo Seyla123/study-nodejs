@@ -6,6 +6,10 @@ const app = express();
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+const AppError = require('./utils/appError');
+const GlobalHandleError = require('./controllers/errorController');
+
 const tourRoute = require('./routes/tourRoutes');
 const userRoute = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
@@ -35,13 +39,15 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/tour', tourRoute);
-app.use('/api/v1/user', userRoute);
+app.use('/api/v1/users', userRoute);
 app.use('/api/v1/product', productRoutes);
 app.use('/api/v1/cart', cartRoutes);
 app.use('/api/v1/order', orderRoutes);
 
-app.post('/', (req, res) => {
-  res.send('you can post this request');
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+
+app.use(GlobalHandleError);
 
 module.exports = app;

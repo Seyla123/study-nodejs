@@ -4,7 +4,7 @@
   "description": "This repo contains starter files and the finished project files for all the projects contained in the course (complete repo size is **288MB**).",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon server.js",
+    "start": "cross-env NODE_ENV=development nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js"
   },
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",

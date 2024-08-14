@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const User = require('./models/user');
+//const User = require('./models/user');
 
 const app = express();
 if (process.env.NODE_ENV === 'development') {
@@ -19,15 +19,15 @@ const orderRoutes = require('./routes/orderRoutes');
 app.use(express.json());
 app.use(express.static(`${__dirname}/4-natours/starter/public`));
 
-app.use(async (req, res, next) => {
-  try {
-    const user = await User.findByPk(1);
-    req.requestUser = await user;
-    next();
-  } catch (error) {
-    console.log(error);
-  }
-});
+// app.use(async (req, res, next) => {
+//   try {
+//     const user = await User.findByPk(1);
+//     req.requestUser = await user;
+//     next();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 app.use((req, res, next) => {
   console.log('Hello from the middleware 👋');
   next();
